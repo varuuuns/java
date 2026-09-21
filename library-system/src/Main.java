@@ -65,6 +65,20 @@ public class Main {
         // System.out.println("searching for a book that doesn't exist...");
         // Book notFound = findBookByTitle(books, "Nonexistent Book");
         // System.out.println(notFound);
+
+        List<Librarian> librarians= new ArrayList<>();
+        Librarian librarian1 = new Librarian("petta","23");
+        Librarian librarian2 = new Librarian("vinay","26");
+
+        List<Person> people = new ArrayList<>();
+        people.add(member1);
+        people.add(member2);
+        people.add(librarian1);
+        people.add(librarian2);
+
+        for(Person p:people){
+            System.out.println("person's role is: "+p.getRole());
+        }
     }
 
     // Sibling method to main() — must be "static" because main() is static
@@ -78,4 +92,6 @@ public class Main {
 
         return null;
     }
+
+    
 }
