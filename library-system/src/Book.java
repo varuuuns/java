@@ -42,12 +42,14 @@ public class Book {
 
     // ---- Behavior ----
     // Methods that change the object's state.
-    public void borrow() {
+    // "throws BookNotAvailableException" in the signature is required for a
+    // checked exception — it tells every caller "you must handle this".
+    public void borrow() throws BookNotAvailableException {
         if (available) {
             available = false;
             System.out.println("You borrowed: " + title);
         } else {
-            System.out.println(title + " is already borrowed.");
+            throw new BookNotAvailableException(title + " is already borrowed.");
         }
     }
 

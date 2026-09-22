@@ -17,8 +17,12 @@ public class Main {
 
         // System.out.println("---");
 
-        book1.borrow();          // borrow it once — should succeed
-        book1.borrow();          // try again — should say already borrowed
+        try {
+            book1.borrow();          // borrow it once — should succeed
+            book1.borrow();          // try again — should throw
+        } catch (BookNotAvailableException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
 
         // System.out.println(book1);
 
@@ -84,12 +88,17 @@ public class Main {
     // Sibling method to main() — must be "static" because main() is static
     // and calls it without creating a Main object first.
     public static Book findBookByTitle(List<Book> books, String title) {
-        for (Book b : books) {
-            if (b.getTitle().equals(title)) {
-                return b;
+        try{
+            for (Book b : books) {
+                if (b.getTitle().equals(title)) {
+                    return b;
+                }
             }
+            throw new MemberNotFoundException(title + " is not found");
         }
-
+        catch(MemberNotFoundException e){
+            System.out.println("Error: "+ e.getMessage());
+        }
         return null;
     }
 
